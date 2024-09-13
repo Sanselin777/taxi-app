@@ -9,6 +9,7 @@ import { Link, router } from "expo-router";
 import OAuth from "@/components/OAuth";
 import { useSignUp } from "@clerk/clerk-expo";
 import { ReactNativeModal } from "react-native-modal";
+import { fetchAPI } from "@/lib/fetch";
 
 const SignUp = () => {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -50,6 +51,14 @@ const SignUp = () => {
         code: verification.code,
       });
       if (completeSignUp.status === "complete") {
+        await fetchAPI("/(api)/user", {
+          method: "POST",
+          body: JSON.stringify({
+            name: form.name,
+            email: form.email,
+            clerkId: completeSignUp.createdUserId,
+          }),
+        });
         await setActive({ session: completeSignUp.createdSessionId });
         setVerification({ ...verification, state: "success" });
       } else {
@@ -128,7 +137,7 @@ const SignUp = () => {
             <Text className="font-JakartaExtraBold text-2xl mb-2">
               Verification
             </Text>
-            <Text className="font-Jakarta mb-5">
+            <Text className="font-JakartaMedium mb-5">
               We've sent a verification code to {form.email}
             </Text>
             <InputField
@@ -158,7 +167,7 @@ const SignUp = () => {
             <Text className="text-3xl font-JakartaBold text-center">
               Verified
             </Text>
-            <Text className="text-base text-gray-400 font-Jakarta text-center mt-2">
+            <Text className="text-base text-gray-400 font-JakartaMedium text-center mt-2">
               You have successfully verified your account.
             </Text>
             <CustomButton

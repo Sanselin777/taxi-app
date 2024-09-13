@@ -4,12 +4,10 @@ import React from "react";
 
 const Home = () => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <Text>Home</Text>
+    <SafeAreaView className="bg-general-500">
+      <Text>Homeeeee</Text>
     </SafeAreaView>
   );
 };
 
 export default Home;
-
-const styles = StyleSheet.create({});

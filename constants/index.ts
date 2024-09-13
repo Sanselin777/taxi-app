@@ -98,3 +98,26 @@ export const onboarding = [
 export const data = {
   onboarding,
 };
+
+export const tabList = [
+  {
+    name: "home",
+    title: "Home",
+    icon: home,
+  },
+  {
+    name: "rides",
+    title: "Rides",
+    icon: list,
+  },
+  {
+    name: "chat",
+    title: "Chat",
+    icon: chat,
+  },
+  {
+    name: "profile",
+    title: "Profile",
+    icon: profile,
+  },
+];
